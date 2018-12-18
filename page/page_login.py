@@ -36,7 +36,7 @@ class PageLogin(Base):
         self.base_input(page.login_pwd, password)
 
     # 点击 登录按钮
-    @allure.step("点击 登录按钮")
+    @allure.step("点击 登录按钮 ")
     def page_click_login_btn(self):
         self.base_click(page.login_btn)
 
