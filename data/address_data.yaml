@@ -1,0 +1,18 @@
+add_address:
+  al_address_001:
+    name: "张三"
+    phone: "18600001111"
+    province: "广东省"
+    city: "广州市"
+    area: "天河区"
+    address_info: "珠吉路某某街道某某1号"
+    code: "500001"
+update_address:
+  al_address_001:
+    name: "李四"
+    phone: "18600002222"
+    province: "江苏省"
+    city: "南京市"
+    area: "白下区"
+    address_info: "白下区某某街道某某1号"
+    code: "600001"

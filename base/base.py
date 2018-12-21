@@ -16,10 +16,15 @@ class Base():
     def __init__(self, driver):
         self.driver = driver
 
-    # 定位封装
+    # 定位单个封装
     def base_find_element(self, loc, timeout=30, poll=0.5):
         # 显示等待
         return WebDriverWait(self.driver, timeout, poll_frequency=poll).until(lambda x: x.find_element(*loc))
+
+    # 定位一组元素
+    def base_find_elements(self, loc, timeout=30, poll=0.5):
+        # 显示等待
+        return WebDriverWait(self.driver, timeout, poll_frequency=poll).until(lambda x: x.find_elements(*loc))
 
     # 输入封装
     def base_input(self, loc, value):
@@ -45,12 +50,30 @@ class Base():
         self.driver.get_screenshot_as_file("./image/faild.png")
 
     # 拖拽
-    def base_drag_and_drop(self,el1,el2):
+    def base_drag_and_drop(self, el1, el2):
         # 从el1 拖拽到 el2
-        self.driver.drag_and_drop(el1,el2)
+        self.driver.drag_and_drop(el1, el2)
 
     # 获取toast封装
-    def base_get_toast(self,msg):
-        loc=By.XPATH,"//*[contains(@text,'"+msg+"')]"
+    def base_get_toast(self, msg):
+        loc = By.XPATH, "//*[contains(@text,'" + msg + "')]"
         # 调用 查找元素方法 并返回text
-        return self.base_find_element(loc,timeout=3,poll=0.1).text
+        return self.base_find_element(loc, timeout=3, poll=0.1).text
+
+    # 根据文本，查找元素
+    def base_text_get_element(self, text):
+        loc = By.XPATH, "//*[contains(@text,'" + text + "')]"
+        return self.base_find_element(loc, poll=0.1)
+
+    # 根据文本 查找一组元素
+    def base_text_get_elements(self, text):
+        loc = By.XPATH, "//*[contains(@text,'" + text + "')]"
+        return self.base_find_elements(loc, poll=0.1)
+
+    # 传入文本，获取包含此文本的所有元素，并且 默认点击第一个元素
+    def base_click_elements(self, text, num=0):
+        self.base_text_get_elements(text)[num].click()
+
+    # 根据文本，点击元素
+    def base_text_click(self, text):
+        self.base_text_get_element(text).click()

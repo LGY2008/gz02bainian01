@@ -79,3 +79,20 @@ class PageLogin(Base):
         self.page_click_logout_btn()
         # 确认 退出
         self.page_click_logout_ok()
+
+    # 封装 登录成功方法  --》地址管理使用
+    def page_login(self, username="18610453007", password="123456"):
+        # 点击 我
+        self.page_click_me()
+        # 点击 已有账号，去登录
+        self.page_click_username_link()
+        # 输入账号
+        self.page_input_username(username)
+        # 输入密码
+        self.page_input_pwd(password)
+        # 点击登录
+        self.page_click_login_btn()
+        # 点击设置
+        self.page_click_setting()
+
+

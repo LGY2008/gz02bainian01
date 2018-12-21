@@ -24,12 +24,23 @@ class ReadYaml():
     # 使用固定路径，只能右键调试使用。
     def read_yaml_1(self):
         # 打开文件
-        with open("../data/login_data.yaml", "r", encoding="utf-8")as f:
+        with open("../data/address_data.yaml", "r", encoding="utf-8")as f:
             # 调用load方法
             return yaml.load(f)
 
 if __name__ == '__main__':
     arrs = []
-    for data in ReadYaml(" ").read_yaml_1().values():
-        arrs.append((data.get("username"), data.get("password"), data.get("expect_result"), data.get("expect_toast")))
+    # for data in ReadYaml(" ").read_yaml_1().values():
+    #     arrs.append((data.get("username"), data.get("password"), data.get("expect_result"), data.get("expect_toast")))
+    # print(arrs)
+
+
+    for data in ReadYaml(" ").read_yaml_1().get("add_address").values():
+        # name, phone, province, city, area, address_info, code
+        (arrs.append(
+                    (data.get("name"),data.get("phone"),data.get("province"),
+                     data.get("city"),data.get("area"),data.get("address_info"),
+                     data.get("code"))
+                    )
+        )
     print(arrs)
